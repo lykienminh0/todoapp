@@ -2,28 +2,50 @@ import React, { useState } from 'react';
 //components
 import ToDoList from './components/ToDoList';
 import ToDoForm from './components/ToDoForm';
+import TaskFilters from './components/TaskFilters';
+import Login from './components/Login';
+
+const FILTER_NAMES = {
+  'all': 'View all', 
+  'notDone': 'Not done', 
+  'done': 'Done', 
+};
+
+const FILTER_KEYS = ['all', 'notDone', 'done']
 
 function App() {
   
-  const [ toDoList, setToDoList ] = useState("");
+  // { id: , task: , complete: }
+  const [ toDoList, setToDoList ] = useState('');
+  const [ filter, setFilter ] = useState('all');
+  const [ isLogin, setIsLogin ] = useState(false);
 
-  const handleToggle = (id) => {
-    let mapped = toDoList.map(task => {
-      return task.id === Number(id) ? { ...task, complete: !task.complete } : { ...task};
+  // Filter list All | Not done | Done
+  const filterList = FILTER_KEYS.map(name => (
+    <TaskFilters
+      key={name}
+      name={name}
+      isPressed={name === filter}
+      displayName={FILTER_NAMES[name]}
+      setFilter={setFilter}
+    />
+  ));
+
+  function toggleTaskCompleted(id) {
+    const updatedTasks = toDoList.map(task => {
+      return task.id === id ? { ...task, complete: !task.complete } : { ...task};
     });
-    setToDoList(mapped);
+    setToDoList(updatedTasks);
   }
 
-  const handleFilter = () => {
-    let filtered = toDoList.filter(task => {
-      return !task.complete;
-    });
-    setToDoList(filtered);
+  function deleteTask(id) {
+    const remainingTasks = toDoList.filter(task => id !== task.id);
+    setToDoList(remainingTasks);
   }
 
-  const addTask = (userInput ) => {
+  const addTask = (userInput) => {
     let copy = [...toDoList];
-    copy = [...copy, { id: toDoList.length + 1, task: userInput, complete: false }];
+    copy = [{ id: toDoList.length + 1, task: userInput, complete: false }, ...copy];
     setToDoList(copy);
   }
 
@@ -32,8 +54,32 @@ function App() {
       <header>
         <h1>To Do List</h1>
       </header>
-      <ToDoList toDoList={toDoList} handleToggle={handleToggle} handleFilter={handleFilter}/>
-      <ToDoForm addTask={addTask}/>
+      
+      { !isLogin && 
+      <Login className='isNotLogin' setIsLogin={setIsLogin}/>
+      }
+
+      { isLogin && 
+      <div className='isLogin'>
+        <ToDoForm addTask={addTask}/> 
+        {filterList} 
+        <ToDoList todoList={toDoList} filter={filter} deleteTask={deleteTask} toggleTaskCompleted={toggleTaskCompleted}/>
+        <br/> 
+        <button
+          type="button"
+          className="btn logout-btn"
+          onClick={() => {
+            alert('You have successfully logged out!');
+            setIsLogin(false);
+          }}
+        > 
+          Logout 
+        </button>
+      </div>
+      }
+
+      <br/> 
+      <footer>Made by Lee Kim Min</footer>
     </div>
   );
 }

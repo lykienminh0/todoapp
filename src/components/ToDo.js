@@ -1,17 +1,21 @@
 import React from 'react';
+import './ToDo.css';
 
-const ToDo = ({todo, handleToggle}) => {
-
-    const handleClick = (e) => {
-        e.preventDefault()
-        handleToggle(e.currentTarget.id)
-    }
-
+const ToDo = (props) => {
     return (
-        <div id={todo.id} key={todo.id + todo.task} name="todo" value={todo.id} onClick={handleClick} className={todo.complete ? "todo strike" : "todo"}>
-            {todo.task}
+        <div className='todo-item flex-container'>
+            <button className='btn-completed flex-item' onClick={() => props.handleComplete(props.todo.id)}>
+                {props.todo.complete ? 'Not done' : 'Done'}
+            </button>
+            <div className={props.todo.complete ? 'todo-value flex-item todo-strike' : 'todo-value flex-item'} value={props.todo.id}>
+                {props.todo.task}
+            </div>
+            <button className='btn-delete flex-item' onClick={() => props.handleDelete(props.todo.id)}>
+                Delete
+            </button>
         </div>
     );
 };
+
 
 export default ToDo;

@@ -1,0 +1,14 @@
+.flex-container {
+    display: flex;
+    outline: none;
+    border-bottom: 1px dotted #666;
+    height: 60px;
+    overflow: hidden;
+    flex: 0 0 auto;
+    color: #000;
+    font-size: 1.125rem;
+    font-weight: 300;
+}
+.todo-strike {
+    text-decoration: line-through;
+}
