@@ -45,7 +45,9 @@ function App() {
 
   const addTask = (userInput) => {
     let copy = [...toDoList];
-    copy = [{ id: toDoList.length + 1, task: userInput, complete: false }, ...copy];
+    // let id = toDoList.length > 1 : Math.max.apply(Math, toDoList.map(function(todo) { return todo.y; })) ? toDoList.length;
+    let maxID = toDoList.length > 0 ? toDoList[0].id : 0;
+    copy = [{ id:  maxID + 1, task: userInput, complete: false }, ...copy];
     setToDoList(copy);
   }
 
