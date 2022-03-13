@@ -1,9 +1,12 @@
 # TODO APP #
 
-## 1. Branch master ##  
+## 1. Branch [feature/add-ui](https://github.com/lykienminh0/todoapp/tree/feature/add-ui) ##  
+> Add UI to Redux
+
+## 2. Branch [Redux](https://github.com/lykienminh0/todoapp/tree/redux) ##  
 > Use Redux + React
 
-## 2. Branch react ##  
+## 3. Branch [React](https://github.com/lykienminh0/todoapp/tree/react) ##  
 > Use React (state,...)
 
 <!-- # Getting Started with Create React App

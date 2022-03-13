@@ -24,8 +24,8 @@ const Login = ({dispatch}) => {
         setUserInput(''); 
     }
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className='container'>
+            <form className='persistent-header' onSubmit={handleSubmit}>
                 <label> Username:
                     <input
                         name="username"
@@ -33,7 +33,7 @@ const Login = ({dispatch}) => {
                         value={userInput.username ? userInput.username : ''}
                         onChange={handleChange} />
                 </label>
-                <br />
+                
                 <label> Password:
                     <input
                         name="password"
@@ -41,7 +41,7 @@ const Login = ({dispatch}) => {
                         value={userInput.password ? userInput.password : ''}
                         onChange={handleChange} />
                 </label>
-                <button type="submit"> Login </button>
+                <button type="submit" className='todo-list-item-button'> Login </button>
             </form>
         </div>
     );

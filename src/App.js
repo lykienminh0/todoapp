@@ -1,4 +1,6 @@
 import React from 'react';
+//css
+import './App.css'
 //containers
 import AddTodo from './containers/AddTodo'
 import VisibleTodoList from './containers/VisibleTodoList'
@@ -19,13 +21,13 @@ function App({isLogin, dispatch}) {
       }
 
       {isLogin &&
-        <div className="login-success">
+        <div className="container persistent-header">
           <AddTodo />
           <FilterToolbar />
           <VisibleTodoList />
           <button
             type="button"
-            className="btn logout-btn"
+            className="todo-list-item-button logout-btn"
             onClick={() => {
               alert('You have successfully logged out!');
               dispatch(toggleLogin());

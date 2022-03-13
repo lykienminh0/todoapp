@@ -2,7 +2,7 @@ import React from 'react';
 import Todo from './Todo.js';
 
 const TodoList = ({ todos, toggleTodo, deleteTodo }) => (
-    <div className='todo-list'>
+    <ul className='todo-list-root' style={{ padding: 0 }}>
       {todos.map(todo =>
         <Todo
           key={todo.id}
@@ -11,7 +11,7 @@ const TodoList = ({ todos, toggleTodo, deleteTodo }) => (
           deleteTodo={() => deleteTodo(todo.id)}
         />
       )}
-    </div>
+    </ul>
   )
 
 export default TodoList;
