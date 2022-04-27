@@ -5,14 +5,7 @@ A simple todo web application
 Try out now on [minhly1.github.io](https://minhly1.github.io/)  
 
 Login infomation
-
-```json
-{
-"username": "password",
-"admin": "123",
-"mint": "123"
-}
-```
+username / password : admin / 123 OR mint / 123
 
 ## Screenshot  
 ![Todo app](./assets/homepage.jpg)  
